@@ -150,7 +150,7 @@ function spawnEnemies() {
 }
  // âm thanh khi va chạm
  function loadSound() {
-    createjs.Sound.registerSound("explosion.mp3", 'Thunder');
+    createjs.Sound.registerSound("./explosion1.mp3", 'Thunder');
   }
 
   function playSound() {
@@ -205,9 +205,13 @@ function animationProjectitle() {
             // Xử lý va chạm 
             if(dist - enemy.radius - projectitle.radius < 1) {
                 // tạo vụ nổ 
-                for(let i = 0; i < enemy.radius * 2; i++) {
-                    particles.push(new Particle(projectitle.x, projectitle.y, Math.random() * 2, enemy.color, {x: Math.random() - 0.5, y: Math.random() - 0.5}))
-                }
+                playSound();
+                setTimeout(() => {
+                    for(let i = 0; i < enemy.radius * 2; i++) {
+                        particles.push(new Particle(projectitle.x, projectitle.y, Math.random() * 2, enemy.color, {x: Math.random() - 0.5, y: Math.random() - 0.5}))
+                    }
+                }, 0)
+                
                       
                 if(enemy.radius > 10) {
                     gsap.to(enemy, {
@@ -216,7 +220,7 @@ function animationProjectitle() {
                     boxScore += 10;
                     score.innerHTML = boxScore;
                     // âm thanh khi va chạm
-                    playSound();
+
                     setTimeout(() => {
                         projectiles.splice(projectitleIndex, 1)
                     }, 0)
