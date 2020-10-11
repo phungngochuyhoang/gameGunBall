@@ -11,6 +11,10 @@ const backGame = document.querySelector('#back-game');
 const boxEnd = document.querySelector('#end');
 const myPoint = document.querySelector('#my-point');
 
+
+let boxScore = 0;
+
+
 // Tạo đối tượng player 
 class Player {
     constructor(x, y, radius, color) {
@@ -142,8 +146,16 @@ function spawnEnemies() {
         setTimeout(() => {
             enemies.push(new Enemy(x, y, radius, color, velocity))
         }, 0)
-    }, 1000)
+    }, 1500)
 }
+ // âm thanh khi va chạm
+ function loadSound() {
+    createjs.Sound.registerSound("explosion.mp3", 'Thunder');
+  }
+
+  function playSound() {
+    createjs.Sound.play('Thunder');
+  }
 
 function endGame(properties, point) {
     boxEnd.style.visibility = properties;
@@ -154,8 +166,10 @@ function endGame(properties, point) {
 }
 
 
+
+
 let animationId;
-let boxScore = 0;
+
 
 // chức năng chuyển động hoạt hình
 function animationProjectitle() {
@@ -194,12 +208,15 @@ function animationProjectitle() {
                 for(let i = 0; i < enemy.radius * 2; i++) {
                     particles.push(new Particle(projectitle.x, projectitle.y, Math.random() * 2, enemy.color, {x: Math.random() - 0.5, y: Math.random() - 0.5}))
                 }
+                      
                 if(enemy.radius > 10) {
                     gsap.to(enemy, {
                         radius: enemy.radius - 10
                     })
                     boxScore += 10;
                     score.innerHTML = boxScore;
+                    // âm thanh khi va chạm
+                    playSound();
                     setTimeout(() => {
                         projectiles.splice(projectitleIndex, 1)
                     }, 0)
@@ -235,3 +252,8 @@ startGame.addEventListener('click', () => {
     animationProjectitle();
     spawnEnemies();
 })
+
+
+document.body.onload = function () {
+    loadSound();
+}
