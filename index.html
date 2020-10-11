@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="score"><span>Score:</span><span id="score"> 0 </span></div>
+    <div class="box start" id="box-start">
+        <div class="bg-white">
+            <h1> My Game  </h1>
+            <!-- <p> My Game </p>  -->
+            <div class="bx-button">
+                <button id="start-game"> Start Game </button>
+            </div>
+        </div>
+    </div>
+    <div class="box end" id="end">
+        <div class="bg-white1">
+            <h1 id="my-point"> 0 </h1>
+            <p> Point </p> 
+            <div class="bx-button">
+                <button id="back-game"> Back Game </button>
+            </div>
+        </div>
+    </div>
+    <canvas></canvas>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.5.1/gsap.min.js" integrity="sha512-IQLehpLoVS4fNzl7IfH8Iowfm5+RiMGtHykgZJl9AWMgqx0AmJ6cRWcB+GaGVtIsnC4voMfm8f2vwtY+6oPjpQ==" crossorigin="anonymous"></script>
+    <script src="./index.js"></script>
+</body>
+</html>
